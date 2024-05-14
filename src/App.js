@@ -1,6 +1,8 @@
 
 import './App.css';
-import Seats from './Seats';
+import './Seats/Seats.css';
+
+import Seats from './Seats/Seats';
 
 function App() {
   return (
