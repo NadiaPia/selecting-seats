@@ -4,12 +4,10 @@ import "./Seats.css";
 export default function Seats() {
   const [selectedSeats, setSelectedSeats] = useState([]);
 
-
   const numberOfTickets = 1;
 
   const seatsSchemeObj = { A: 8, B: 10, C: 10, D: 20, E: 5, F: 20 };
 
-  
   const choseSeat = (i) => {
     //prev make sure it will take previous value of state
     setSelectedSeats((prev) => {
@@ -29,10 +27,13 @@ export default function Seats() {
 
   return (
     <>
-      <div className="screenContainer">SCREEN</div>
       <div className="seatsContainer">
+
+        <div className="screenContainer">SCREEN</div>
+
         {Object.entries(seatsSchemeObj).map((el) => (
           <div className="rowSeatsContainer" key={el[0]}>
+            <div>{el[0]}</div>
             {Array.from({ length: el[1] }).map((seat, i) => (
               <Seat
                 key={`${el[0]}${i}`}
@@ -40,8 +41,11 @@ export default function Seats() {
                 isSelected={selectedSeats?.includes(`${el[0]}${i}`)}
               />
             ))}
+            <div>{el[0]}</div>
           </div>
         ))}
+        
+        <button>Submit</button>
       </div>
     </>
   );
