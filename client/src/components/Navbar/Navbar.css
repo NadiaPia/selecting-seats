@@ -1,0 +1,8 @@
+.navbarContainer {
+    background-color: #3e3e3e;
+    height: 8vh;
+    padding: 10px 50px;
+    color: white;
+    /* background-color: #212121; */
+    /* box-shadow: 12px 0 15px -4px rgba(31, 73, 125, 0.8), -12px 0 8px -4px rgba(31, 73, 125, 0.8); */
+}

@@ -1,0 +1,57 @@
+
+get http://localhost:3003/
+content-Type: application/json
+
+
+###
+
+
+post http://localhost:3003/api/seats
+content-Type: application/json
+
+{
+    "name": "A4"
+}
+
+
+###
+
+get http://localhost:3003/api/seats
+content-Type: application/json
+###
+
+
+get http://localhost:3003/api/seats/66445855e198f7ce93ee4317
+content-Type: application/json
+###
+
+# delete http://localhost:3003/tasks/2
+# content-Type: application/json
+
+# ###
+
+# post http://localhost:3003/auth
+# content-Type: application/json
+
+# {
+#     "username": "nadia",
+#     "password": "password"
+# }
+
+# ###
+
+# post http://localhost:3003/auth/login
+# content-Type: application/json
+
+# {
+#     "username": "nadia",
+#     "password": "password"
+# }
+
+# ###
+# put http://localhost:3003/tasks/checkbox/2
+# content-Type: application/json
+
+# {
+#     "checkbox": true   
+}
