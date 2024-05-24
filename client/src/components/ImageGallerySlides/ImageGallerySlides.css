@@ -2,3 +2,39 @@
     height: 50vh;
     background-color: #7d6565;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: rgb(67, 67, 67) !important; 
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 50px;  
+  background-color: rgba(234, 232, 232, 0.681)
+}
+
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    color: rgb(39, 39, 39) !important; 
+}
+
+.swiper-pagination-bullet {
+    background-color: transparent !important;
+    border: solid white;
+}
+
+  .swiper-pagination-bullet-active {
+    background-color: white !important; 
+  }
+
+  
+  .gradient {
+    position: absolute;
+    background: linear-gradient(-180deg, rgba(10, 11, 13, 0) 0%, rgba(10, 11, 13, 0.64) 50.58%, #0A0B0D 86%);
+    height: 96px;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+  }
+
+ 

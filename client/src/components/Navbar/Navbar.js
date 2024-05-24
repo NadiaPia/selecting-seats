@@ -3,7 +3,11 @@ import React from 'react'
 function Navbar() {
   return (
     <div className='navbarContainer'>
-      Navbar
+     <div className="logo">Logo</div>
+     <div>
+      <div className="navbarItem">Login</div>
+      
+     </div>
       
     </div>
   )

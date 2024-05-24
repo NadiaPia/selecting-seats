@@ -3,6 +3,8 @@ const SeatModel = require('../models/seats.model.js');
 
 const router = express.Router();
 
+//      /seats
+
 router.post("/", async (req, res) => {
     try{
         const seat = await SeatModel.create(req.body);

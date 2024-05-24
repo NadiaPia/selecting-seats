@@ -1,0 +1,36 @@
+.actualMovieContainer {
+  /* background-color: #484848; */
+  background-color: rgb(247, 244, 244);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  padding-top: 20px;
+  padding: 30px 20px;
+}
+
+.movieContainer {
+  overflow: hidden;
+  /* box-shadow: 5px 5px 15px #7f8080; */
+}
+
+.picture {
+  border: solid 1px rgb(209, 208, 208);  
+  height: 490px
+}
+
+.picture img:hover {
+    transform: scale(1.1);
+    /* transition: 0.25s ease; */
+    transition-duration: 800ms;
+    
+}
+
+.picture  img {
+ transition: 0.25s ease;
+}
+
+.picture {
+  overflow: hidden;
+}

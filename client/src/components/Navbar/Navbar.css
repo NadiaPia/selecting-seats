@@ -1,8 +1,23 @@
 .navbarContainer {
-    background-color: #3e3e3e;
+    background-color: #302f2f;
     height: 8vh;
     padding: 10px 50px;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     /* background-color: #212121; */
     /* box-shadow: 12px 0 15px -4px rgba(31, 73, 125, 0.8), -12px 0 8px -4px rgba(31, 73, 125, 0.8); */
+}
+
+.navbarItem {
+    background-color: #FFD600;
+    color: black;
+    padding: 10px 30px;
+    font-weight: bold;
+    border-radius: 30px;
+}
+
+.logo {
+    font-size: 50px;
 }
