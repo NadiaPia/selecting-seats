@@ -10,7 +10,20 @@ content-Type: application/json
 
 get http://localhost:3003/seats
 content-Type: application/json
+
 ###
+get http://localhost:3003/seats/66445855e198f7ce93ee4317
+content-Type: application/json
+###
+
+
+
+
+
+
+
+
+
 
 post http://localhost:3003/movies
 content-Type: application/json
@@ -21,9 +34,19 @@ content-Type: application/json
 ###
 
 
-get http://localhost:3003/api/seats/66445855e198f7ce93ee4317
-content-Type: application/json
-###
-
 get http://localhost:3003/movies
 content-Type: application/json
+
+###
+
+
+
+post http://localhost:3003/schedule
+content-Type: application/json
+
+{
+    "movie": "664ffb8d1ab8993b4e58941b",
+    "time": "12pm",
+    "date": "3"
+}
+###

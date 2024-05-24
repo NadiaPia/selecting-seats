@@ -20,6 +20,9 @@ app.use("/seats", seatesRouter)
 const moviesRouter = require('./routes/movies.js');
 app.use("/movies", moviesRouter)
 
+const scheduleRouter = require('./routes/schedule.js');
+app.use("/schedule", scheduleRouter)
+
 
 
 
