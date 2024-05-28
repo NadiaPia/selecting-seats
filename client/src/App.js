@@ -4,6 +4,8 @@ import "./App.css";
 import "./components/Seats/Seats.css";
 import "./components/Navbar/Navbar.css";
 import "./components/Home/Home.css";
+import "./components/DaysMenu/DaysMenu.css";
+
 
 import "./components/ImageGallerySlides/ImageGallerySlides.css";
 
@@ -12,6 +14,7 @@ import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 
 import ImageGallerySlides from "./components/ImageGallerySlides/ImageGallerySlides";
+import DaysMenu from "./components/DaysMenu/DaysMenu";
 
 
 
@@ -21,7 +24,7 @@ function App() {
       <Router>
         <Navbar />
         <ImageGallerySlides/>
-        
+        <DaysMenu/>       
         
 
         <Routes>

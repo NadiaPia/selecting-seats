@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import secrets from "../../secrets.json";
 
 function Home() {
   const [movieList, setMovieList] = useState([]);

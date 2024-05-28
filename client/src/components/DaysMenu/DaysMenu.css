@@ -1,0 +1,27 @@
+
+
+
+.daysMenuContainer {
+    background-color: rgb(233, 231, 231);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px 0;
+    height: 35px;
+
+}
+
+.dayBox {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    font-size: 1.3em;
+    border-radius: 20px;
+    padding: 8px 20px ;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    border: solid transparent 1px; /* Set a transparent border to maintain size */
+}
+
+.dayBox:hover {
+    border: solid #FFD600 1px
+}

@@ -29,7 +29,7 @@ post http://localhost:3003/movies
 content-Type: application/json
 
 {
-    "movieId": "12477"
+    "movieId": "97075"
 }
 ###
 
@@ -45,8 +45,13 @@ post http://localhost:3003/schedule
 content-Type: application/json
 
 {
-    "movie": "664ffb8d1ab8993b4e58941b",
+    "movie": "665033e08835b6058c9cdbdd",
     "time": "12pm",
-    "date": "3"
+    "date": "2"
 }
+###
+
+get http://localhost:3003/schedule/2
+content-Type: application/json
+
 ###

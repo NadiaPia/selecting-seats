@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
   try {
     const movie = await MovieModel.create(req.body);
     res.status(200).json(movie);
-    console.log("esponse sent");
+    console.log("response sent");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -21,6 +21,8 @@ router.get("/", async (req, res) => {
     const response = await MovieModel.find({});
     const movieIds = response.map((el) => el.movieId);
     const item = movieIds.join(","); //466420,1029575,976573
+
+    //https://rapidapi.com/netostbatista-8PFB2-57zTu/api/tvshow/
 
     const options = {
       method: "GET",
