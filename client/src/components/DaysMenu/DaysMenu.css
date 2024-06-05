@@ -9,6 +9,7 @@
     padding: 20px 0;
     height: 35px;
 
+
 }
 
 .dayBox {
@@ -17,11 +18,16 @@
     background-color: white;
     font-size: 1.3em;
     border-radius: 20px;
-    padding: 8px 20px ;
+    padding: 20px 20px ;
     box-sizing: border-box; /* Include padding and border in element's total width and height */
-    border: solid transparent 1px; /* Set a transparent border to maintain size */
+    border: solid rgb(213, 212, 212) 1px; /* Set a transparent border to maintain size */
+}
+
+.active {
+    background-color: #FFD600;
 }
 
 .dayBox:hover {
-    border: solid #FFD600 1px
+    border: solid #FFD600 1px;
+    cursor: pointer;
 }

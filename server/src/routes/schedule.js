@@ -26,112 +26,20 @@ router.post("/", async (req, res) => {
   }
 });
 
-/*
 
-router.get("/:day", async (req, res) => {
-  try {
-    //console.log("req.params.day", req.params.day);
-    const timeSlot = await ScheduleModel.find({ date: req.params.day });
-    //console.log("timeSlot", timeSlot)
-
-    const movies = [];
-    const filterMovies = await timeSlot.map(async (el) => {
-      const film = await MovieModel.find({ _id: el.movie });
-      //console.log("film", film[0].movieId);
-      movies.push(film[0].movieId);
-      //console.log("movies", movies);
-      const item = movies.join(","); //1029575,1029575,1029575
-      //console.log("items", item);
-
-      const options = {
-        method: "GET",
-        url: "https://tvshow.p.rapidapi.com/Movie/Detail",
-        params: {
-          Items: `${item}`,
-          Language: "en-US",
-        },
-        headers: {
-          "x-rapidapi-key": `${process.env.X_RAPIDAPI_KEY}`,
-          "x-rapidapi-host": "tvshow.p.rapidapi.com",
-        },
-      };
-    //   const response = await axios.request(options);
-    //   const moviesFromAPI = response.data;
-
-      //   try {
-      //     // const response = await axios.request(options);
-      //     // const moviesFromAPI = response.data;
-      //     //console.log("moviesFromAPI", moviesFromAPI)
-      //     //res.status(200).json(movies);
-      //   } catch (error) {
-      //     console.error(error);
-      //   }
-    });
-    //console.log("filterMovies", filterMovies);
-
-    // const arr = [{"name": "nadia"}, {"name": "petia"}]
-    // const modifiedArr = arr.map((el) =>  {return {name: "tania"}})
-    // console.log("modifiedArrrrrrrrrrrrr", modifiedArr)
-    //res.status(200).json(timeSlot)
-    const modifiedTimeSlot = timeSlot.map((el) => {
-      return { movie: { moviesFromAPI } };
-    });
-    res.status(200).json(timeSlot); //[ { "_id": "6650f995e2dec6be3e4612b3", "movie": "664ffb8d1ab8993b4e58941b", "time": "12pm", "date": "3",  "__v": 0  }]
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});*/
-
-// router.get("/:day", async (req, res) => {
-//     try {
-//       const timeSlot = await ScheduleModel.find({ date: req.params.day });
-//       const movies = [];
-
-//       const filterMovies = await timeSlot.map(async (el) => {
-//         const film = await MovieModel.find({ _id: el.movie });
-//         movies.push(film[0].movieId);
-//         const item = movies.join(","); //1029575,1029575,1029575
-
-//         const options = {
-//           method: "GET",
-//           url: "https://tvshow.p.rapidapi.com/Movie/Detail",
-//           params: {
-//             Items: `${item}`,
-//             Language: "en-US",
-//           },
-//           headers: {
-//             "x-rapidapi-key": `${process.env.X_RAPIDAPI_KEY}`,
-//             "x-rapidapi-host": "tvshow.p.rapidapi.com",
-//           },
-//         };
-//          const response = await axios.request(options);
-//          const moviesFromAPI = response.data;
-
-//         //   try {
-//         //     // const response = await axios.request(options);
-//         //     // const moviesFromAPI = response.data;
-//         //     //console.log("moviesFromAPI", moviesFromAPI)
-//         //     //res.status(200).json(movies);
-//         //   } catch (error) {
-//         //     console.error(error);
-//         //   }
-
-//         const modifiedTimeSlot = timeSlot.map((el) => {
-//             return {...el, movie:  moviesFromAPI};
-//           });
-//           res.status(200).json(modifiedTimeSlot); //[ { "_id": "6650f995e2dec6be3e4612b3", "movie": "664ffb8d1ab8993b4e58941b", "time": "12pm", "date": "3",  "__v": 0  }]
-
-//       });
-
-//     } catch (error) {
-//       res.status(500).json({ message: error.message });
-//     }
-//   });
 
 router.get("/:day", async (req, res) => {
   try {
     const movies = [];
     const timeSlot = await ScheduleModel.find({ date: req.params.day });
+    
+    
+    if (timeSlot.length < 1) {
+      console.log("if statement")
+      res.status(200).json({message: "No movies available for this date"});
+      return
+    }
+
     const longShortMovieIdAccordance = {};
 
     const getMoviIdString = await Promise.all(

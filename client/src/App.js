@@ -1,10 +1,14 @@
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 import "./App.css";
 import "./components/Seats/Seats.css";
 import "./components/Navbar/Navbar.css";
 import "./components/Home/Home.css";
 import "./components/DaysMenu/DaysMenu.css";
+import "./components/RegLogBox/RegLogBox.css";
+
 
 
 import "./components/ImageGallerySlides/ImageGallerySlides.css";
@@ -15,20 +19,28 @@ import Navbar from "./components/Navbar/Navbar";
 
 import ImageGallerySlides from "./components/ImageGallerySlides/ImageGallerySlides";
 import DaysMenu from "./components/DaysMenu/DaysMenu";
+import ScheduleMovieList from "./components/ScheduleMovieList/ScheduleMovieList";
 
 
 
 function App() {
+
+  const [scheduledMovieList, setScheduledMovieList] = useState([]);
+  
   return (
     <div>
       <Router>
         <Navbar />
         <ImageGallerySlides/>
-        <DaysMenu/>       
+        <DaysMenu setScheduledMovieList={setScheduledMovieList}/>       
         
 
         <Routes>
           <Route path="/" element={<Home />} />
+          
+
+          <Route path="/schedule" element={<ScheduleMovieList scheduledMovieList={scheduledMovieList}/>} />
+
         </Routes>
 
       </Router>

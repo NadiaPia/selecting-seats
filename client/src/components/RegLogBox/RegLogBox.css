@@ -1,0 +1,30 @@
+.regLogBoxSection {
+    position: absolute;
+    background-color: rgba(30, 29, 29, 0.81);
+    /* width: 600px;
+    height: 400px; */
+    /* left: 900px;
+    top: 300px; */
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 50px;
+}
+
+.regLogBox {
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+}
+
+.signUpLink {
+    text-decoration: underline
+}
+
+.signUpLink:hover {
+    cursor: pointer;
+    text-decoration: underline
+}

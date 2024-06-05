@@ -51,7 +51,7 @@ content-Type: application/json
 }
 ###
 
-get http://localhost:3003/schedule/2
+get http://localhost:3003/schedule/5
 content-Type: application/json
 
 ###
