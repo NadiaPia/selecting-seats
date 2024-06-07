@@ -3,8 +3,8 @@ import axios from "axios";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 function DaysMenu(props) {
+  
   const [active, setActive] = useState(100);
-
   const [searchParams, setSearchParams] = useSearchParams();
 
 
@@ -61,7 +61,7 @@ function DaysMenu(props) {
       
 
       if(response.data.message) {
-        console.log(response.data)
+        console.log("setScheduledMovieList", response.data)
        props.setScheduledMovieList([])
       } else {
           props.setScheduledMovieList(response.data);

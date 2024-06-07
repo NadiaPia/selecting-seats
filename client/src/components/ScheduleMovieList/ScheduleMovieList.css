@@ -1,0 +1,16 @@
+.movieTitle {
+    font-size: 1.8rem;
+    font-weight:500;
+    margin: 15px 0
+  }
+
+  .movieHour {
+    background: #FFD600;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .timeContainer {
+    display: flex;
+    
+  }

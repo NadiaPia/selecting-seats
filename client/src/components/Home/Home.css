@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  align-items: center;
+  align-items:start;
   padding-top: 20px;
   padding: 30px 20px;
 }
@@ -13,6 +13,11 @@
 .movieContainer {
   overflow: hidden;
   /* box-shadow: 5px 5px 15px #7f8080; */
+  width: 340px;
+  display: flex;
+  flex-direction:column;
+  flex-wrap: wrap;
+  cursor: pointer;  
 }
 
 .picture {
@@ -33,4 +38,10 @@
 
 .picture {
   overflow: hidden;
+}
+
+.movieTitle {
+  font-size: 1.8rem;
+  font-weight:500;
+  margin: 15px 0
 }
