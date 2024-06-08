@@ -46,7 +46,7 @@ function ScheduleMovieList({ scheduledMovieList }) {
       return acc;
     }, {})
   );
-  console.log("combinedMovies", combinedMovies);
+  //console.log("combinedMovies", combinedMovies);
 
   return (
     <div>

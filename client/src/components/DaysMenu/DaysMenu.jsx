@@ -1,19 +1,33 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function DaysMenu(props) {
   
-  const [active, setActive] = useState(100);
+  const [active, setActive] = useState(() => {
+    const savedActive = localStorage.getItem("active");
+    return savedActive !== null ? Number(savedActive) : 100;
+  });
   const [searchParams, setSearchParams] = useSearchParams();
 
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    localStorage.setItem("active", active);
+  }, [active]);
+
+  useEffect(() => {
+    active === 100 ? navigate("/") : filterMovies(active)
+  }, [])
+
+  useEffect(() => {
+    
     console.log("date changed", searchParams.get("day"));
     
   }, [searchParams.get("day")]);
+
+ 
 
   function transformDate(number) {
     const weekArray = [

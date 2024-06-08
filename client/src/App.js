@@ -32,12 +32,13 @@ function App() {
     <div>
       <Router>
         <Navbar />
+        
         <ImageGallerySlides/>
-        <DaysMenu setScheduledMovieList={setScheduledMovieList}/>        
+        <DaysMenu setScheduledMovieList={setScheduledMovieList} />        
 
         <Routes>
           <Route path="/" element={<Home setMovieList={setMovieList} movieList={movieList}/>} />
-          <Route path="/schedule" element={<ScheduleMovieList scheduledMovieList={scheduledMovieList}/>} />
+          <Route path="/schedule" element={<ScheduleMovieList scheduledMovieList={scheduledMovieList} />} />
 
         </Routes>
 

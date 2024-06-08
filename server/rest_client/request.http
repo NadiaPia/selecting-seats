@@ -45,9 +45,9 @@ post http://localhost:3003/schedule
 content-Type: application/json
 
 {
-    "movie": "665033e08835b6058c9cdbdd",
-    "time": "12pm",
-    "date": "2"
+    "movie": "665033be8835b6058c9cdbd9",
+    "time": "1pm",
+    "date": "5"
 }
 ###
 
