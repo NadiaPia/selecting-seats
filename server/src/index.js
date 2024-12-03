@@ -44,3 +44,6 @@ mongoose.connect(`mongodb+srv://piatetskaianadia:${process.env.DATABASE_PASSWORD
     console.log("Connection failed");
     console.log(err)
 })
+
+
+

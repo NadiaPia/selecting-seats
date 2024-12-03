@@ -2,7 +2,7 @@
 
 
 .daysMenuContainer {
-    background-color: rgb(233, 231, 231);
+    background-color: rgb(233, 231, 231);    
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -11,7 +11,8 @@
     overflow: scroll;
     overflow-y:hidden;    
     scrollbar-width: none;
-    
+    /* width: 100%; */
+    /* margin: 10px; */
     
 
 }
@@ -19,14 +20,15 @@
 .dayBox {
     display: flex;
     align-items: center;
-    background-color: white;
-    font-size: 1.3rem;
+    background-color: white;    
+    font-size: 0.9rem;
+    
     border-radius: 20px;
     padding: 20px 20px ;
     box-sizing: border-box; /* Include padding and border in element's total width and height */
     border: solid rgb(213, 212, 212) 1px; /* Set a transparent border to maintain size */
-    min-width: fit-content;
-    margin: 0 5px;
+    /* min-width: fit-content; */
+    margin: 0 5px;   
     
 
 }
