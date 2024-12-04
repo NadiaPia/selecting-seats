@@ -37,11 +37,11 @@ function Home({ movieList, setMovieList }) {
     color: "#727276",
   };
 
-  const handlePageClick = (event) => {
+  const handlePageClick = (event) => {    
     console.log(`Clicked page: ${event.selected + 1}`);
   };
 
-
+ 
   return (
     <div>
       <div className="actualMovieContainer">
@@ -71,7 +71,9 @@ function Home({ movieList, setMovieList }) {
           containerClassName="pagination"
           pageClassName="page-item"
           pageLinkClassName="page-link"
-          activeClassName="active"
+          // activeClassName="active"
+          activeLinkClassName="active"
+
           previousClassName="prev-item"
           nextClassName="next-item"
           disabledClassName="disabled"
