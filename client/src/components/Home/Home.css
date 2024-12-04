@@ -45,3 +45,36 @@
   font-weight:500;
   margin: 15px 0
 }
+
+.pagination {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.pagination li {
+  border: 1px solid #ccc;
+  border-radius: 54px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  /* background-color: #c72d2d; */
+
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: #333;
+  /* background-color: #c72d2d; */
+  /* padding: 10px 10px; */
+
+}
+
+.pagination li.active {
+  background-color: rgb(255, 214, 0);
+  color: white;
+  font-weight: bold;
+}

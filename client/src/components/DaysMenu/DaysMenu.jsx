@@ -21,11 +21,11 @@ function DaysMenu(props) {
     active === 100 ? navigate("/") : filterMovies(active)
   }, [])
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    console.log("date changed", searchParams.get("day"));
+  //   console.log("date changed", searchParams.get("day"));
     
-  }, [searchParams.get("day")]);
+  // }, [searchParams.get("day")]);
 
  
 
@@ -70,6 +70,7 @@ function DaysMenu(props) {
     try {
         setActive(i);
       const response = await axios.get(`http://localhost:3003/schedule/${i}`);
+      console.log('no date')
       console.log("to filter", response.data);
       navigate(`/schedule/?day=${i}`);
       

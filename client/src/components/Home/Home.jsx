@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Genres from "../Genres/Genres";
+import ReactPaginate from "react-paginate";
 
 function Home({ movieList, setMovieList }) {
   // const [movieList, setMovieList] = useState([]);
 
   const getMovies = async () => {
+    console.log("getMovies");
     try {
+      console.log("send to the be");
+
       const response = await axios.get("http://localhost:3003/movies");
+
       console.log("All movies", response.data);
       setMovieList(response.data);
     } catch (err) {
@@ -32,6 +37,11 @@ function Home({ movieList, setMovieList }) {
     color: "#727276",
   };
 
+  const handlePageClick = (event) => {
+    console.log(`Clicked page: ${event.selected + 1}`);
+  };
+
+
   return (
     <div>
       <div className="actualMovieContainer">
@@ -51,11 +61,22 @@ function Home({ movieList, setMovieList }) {
               styleGenres={styleGenres}
               styleGenre={styleGenre}
             />
-            
 
             {/* <div>{movie?.releaseDate?.month}</div> */}
           </div>
         ))}
+        <ReactPaginate
+          pageCount={5}
+          onPageChange={handlePageClick}
+          containerClassName="pagination"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          activeClassName="active"
+          previousClassName="prev-item"
+          nextClassName="next-item"
+          disabledClassName="disabled"
+          breakClassName="break-item"
+        />
       </div>
     </div>
   );

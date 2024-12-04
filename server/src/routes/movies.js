@@ -17,6 +17,8 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
+  console.log("req****************************************************************************************************", req.body)
+  console.log('request to the API starting!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
   try {
     const response = await MovieModel.find({});
     const movieIds = response.map((el) => el.movieId);
@@ -42,7 +44,7 @@ router.get("/", async (req, res) => {
       const movies = response.data;
       res.status(200).json(movies);
     } catch (error) {
-      console.error(error);
+      console.error("errorerrorerrorerrorerrorerrorerrorerrorerrorerrorerrorerrorerrorerror", error);
     }
   } catch (err) {
     res.json(err);
