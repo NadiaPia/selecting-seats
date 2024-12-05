@@ -1,3 +1,9 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(247, 244, 244);
+  padding-bottom: 30px;
+}
 .actualMovieContainer {
   /* background-color: #484848; */
   background-color: rgb(247, 244, 244);
@@ -70,6 +76,9 @@
   border-radius: 54px;
   padding: 0.5rem 1rem;
   cursor: pointer;
+}
+.pagination li a:hover {
+  border: 1px solid rgb(255, 214, 0);
 }
 
 .pagination li a.active {

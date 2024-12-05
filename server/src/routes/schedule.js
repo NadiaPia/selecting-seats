@@ -32,7 +32,7 @@ router.get("/:day", async (req, res) => {
   try {
     const movies = [];
     const timeSlot = await ScheduleModel.find({ date: req.params.day });
-    console.log("timeSlot", timeSlot) //[{_id: new ObjectId('6663a1265288f09772f0f740'), movie: new ObjectId('665033be8835b6058c9cdbd9'),  time: '1pm', date: '5',   __v: 0 }, {}]
+    //console.log("timeSlot", timeSlot) //[{_id: new ObjectId('6663a1265288f09772f0f740'), movie: new ObjectId('665033be8835b6058c9cdbd9'),  time: '1pm', date: '5',   __v: 0 }, {}]
     
     
     if (timeSlot.length < 1) {
@@ -47,7 +47,7 @@ router.get("/:day", async (req, res) => {
       timeSlot.map(async (el) => {
         //this mapping returns an array of elements and we need to wait untill all elements returns using Promise all, otherwise, the code will continue after first element returns,
         const film = await MovieModel.find({ _id: el.movie }); //"664ffb8d1ab8993b4e58941b"
-        console.log("film", film)
+        //console.log("film", film)
         movies.push(film[0].movieId); //movies = ['155', '1029575']
         longShortMovieIdAccordance[el.movie] = film[0].movieId; //"664ffb8d1ab8993b4e58941b" : 1029575
       })

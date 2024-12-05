@@ -16,13 +16,29 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/:pagination", async (req, res) => {
   console.log("req****************************************************************************************************", req.body)
   console.log('request to the API starting!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+  console.log("req.params.paginationnnnnnnnnnnnnnnnnnnnnnnnnnnnnn", req.params.pagination)
   try {
     const response = await MovieModel.find({});
     const movieIds = response.map((el) => el.movieId);
-    const item = movieIds.join(","); //466420,1029575,976573
+    console.log("movieIdssssssssssssssssssssssssssssss", movieIds)
+
+    function chunkArray(array, size) {
+      const result = [];
+      for (let i = 0; i < array.length; i += size) {
+        result.push(array.slice(i, i + size));
+      }
+      return result;
+    }
+
+    
+    const groupedMovieIds = chunkArray(movieIds, 10);
+    console.log("groupedMovieIdsssssssss", groupedMovieIds)
+
+    //const item = movieIds.slice(0, 10).join(","); //466420,1029575,976573
+    const item = groupedMovieIds[req.params.pagination - 1]
 
     //https://rapidapi.com/netostbatista-8PFB2-57zTu/api/tvshow/
 
@@ -42,9 +58,9 @@ router.get("/", async (req, res) => {
     try {
       const response = await axios.request(options);
       const movies = response.data;
-      res.status(200).json(movies);
+      res.status(200).json({movies, paginationLength: groupedMovieIds.length});
     } catch (error) {
-      console.error("errorerrorerrorerrorerrorerrorerrorerrorerrorerrorerrorerrorerrorerror", error);
+      console.error("errorerrorerrorerrorerrorerrorerrorerrorerrorerrorerrorerrorerrorerror", error?.response?.data);
     }
   } catch (err) {
     res.json(err);

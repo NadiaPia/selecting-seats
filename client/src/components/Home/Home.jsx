@@ -5,16 +5,20 @@ import ReactPaginate from "react-paginate";
 
 function Home({ movieList, setMovieList }) {
   // const [movieList, setMovieList] = useState([]);
+  const [pagination, setPagitation] = useState(1)
+  const [paginationLength, setPaginationLength] = useState(1)
 
   const getMovies = async () => {
     console.log("getMovies");
     try {
       console.log("send to the be");
 
-      const response = await axios.get("http://localhost:3003/movies");
+      const response = await axios.get(`http://localhost:3003/movies/${pagination}`);
 
-      console.log("All movies", response.data);
-      setMovieList(response.data);
+      console.log("All movies", response.data.movies);
+      setMovieList(response.data.movies);
+      console.log("response.data.paginationLengt", response.data.paginationLength)
+      setPaginationLength(response.data.paginationLength)
     } catch (err) {
       console.log(err);
     }
@@ -22,7 +26,7 @@ function Home({ movieList, setMovieList }) {
 
   useEffect(() => {
     getMovies();
-  }, []);
+  }, [pagination]);
 
   const styleGenres = {
     display: "flex",
@@ -38,12 +42,13 @@ function Home({ movieList, setMovieList }) {
   };
 
   const handlePageClick = (event) => {    
+    setPagitation(event.selected + 1)    
     console.log(`Clicked page: ${event.selected + 1}`);
   };
 
  
   return (
-    <div>
+    <div className="homeContainer">
       <div className="actualMovieContainer">
         {movieList.map((movie) => (
           <div key={movie.id} className="movieContainer">
@@ -65,21 +70,21 @@ function Home({ movieList, setMovieList }) {
             {/* <div>{movie?.releaseDate?.month}</div> */}
           </div>
         ))}
-        <ReactPaginate
-          pageCount={5}
+        
+      </div>
+      <ReactPaginate 
+          pageCount={paginationLength}
           onPageChange={handlePageClick}
           containerClassName="pagination"
           pageClassName="page-item"
           pageLinkClassName="page-link"
           // activeClassName="active"
           activeLinkClassName="active"
-
           previousClassName="prev-item"
           nextClassName="next-item"
           disabledClassName="disabled"
           breakClassName="break-item"
         />
-      </div>
     </div>
   );
 }
