@@ -5,20 +5,25 @@ import ReactPaginate from "react-paginate";
 
 function Home({ movieList, setMovieList }) {
   // const [movieList, setMovieList] = useState([]);
-  const [pagination, setPagitation] = useState(1)
-  const [paginationLength, setPaginationLength] = useState(1)
+  const [pagination, setPagitation] = useState(1);
+  const [paginationLength, setPaginationLength] = useState(1);
 
   const getMovies = async () => {
-    console.log("getMovies");
+    //console.log("getMovies");
     try {
-      console.log("send to the be");
+      //console.log("send to the be");
 
-      const response = await axios.get(`http://localhost:3003/movies/${pagination}`);
+      const response = await axios.get(
+        `http://localhost:3003/movies/${pagination}`
+      );
 
-      console.log("All movies", response.data.movies);
+      //console.log("All movies", response.data.movies);
       setMovieList(response.data.movies);
-      console.log("response.data.paginationLengt", response.data.paginationLength)
-      setPaginationLength(response.data.paginationLength)
+      console.log(
+        "response.data.paginationLengt",
+        response.data.paginationLength
+      );
+      setPaginationLength(response.data.paginationLength);
     } catch (err) {
       console.log(err);
     }
@@ -41,12 +46,11 @@ function Home({ movieList, setMovieList }) {
     color: "#727276",
   };
 
-  const handlePageClick = (event) => {    
-    setPagitation(event.selected + 1)    
+  const handlePageClick = (event) => {
+    setPagitation(event.selected + 1);
     console.log(`Clicked page: ${event.selected + 1}`);
   };
 
- 
   return (
     <div className="homeContainer">
       <div className="actualMovieContainer">
@@ -70,9 +74,9 @@ function Home({ movieList, setMovieList }) {
             {/* <div>{movie?.releaseDate?.month}</div> */}
           </div>
         ))}
-        
       </div>
-      <ReactPaginate 
+      {paginationLength > 1 && (
+        <ReactPaginate
           pageCount={paginationLength}
           onPageChange={handlePageClick}
           containerClassName="pagination"
@@ -85,6 +89,7 @@ function Home({ movieList, setMovieList }) {
           disabledClassName="disabled"
           breakClassName="break-item"
         />
+      )}
     </div>
   );
 }

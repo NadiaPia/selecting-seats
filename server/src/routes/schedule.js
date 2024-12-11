@@ -32,7 +32,8 @@ router.get("/:day", async (req, res) => {
   try {
     const movies = [];
     const timeSlot = await ScheduleModel.find({ date: req.params.day });
-    //console.log("timeSlot", timeSlot) //[{_id: new ObjectId('6663a1265288f09772f0f740'), movie: new ObjectId('665033be8835b6058c9cdbd9'),  time: '1pm', date: '5',   __v: 0 }, {}]
+    
+    console.log("timeSlot", timeSlot) //[{_id: new ObjectId('6663a1265288f09772f0f740'), movie: new ObjectId('665033be8835b6058c9cdbd9'),  time: '1pm', date: '5',   __v: 0 }, {}]
     
     
     if (timeSlot.length < 1) {
@@ -50,11 +51,37 @@ router.get("/:day", async (req, res) => {
         //console.log("film", film)
         movies.push(film[0].movieId); //movies = ['155', '1029575']
         longShortMovieIdAccordance[el.movie] = film[0].movieId; //"664ffb8d1ab8993b4e58941b" : 1029575
+
       })
     );
+    console.log("longShortMovieIdAccordancettttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt", longShortMovieIdAccordance)
+    
+    //console.log("movies", movies); //['976573',  '1143183', '466420',  '653346', '1143183', '155', '466420',  '19404', '1143183', '155']
+
+    //Only 10 movies can be send from API (free version). As every movie may be scheduled several times per day, we have to send 
+    //a unique movie's id in order API send 10 movies but not 10 schedules:
+
+    const uniqueMovies = [...new Set(movies)]; 
+    console.log("uuuuuuuuuuuuuuuuuuuuuniqueMovies", uniqueMovies); //[ '976573', '1143183', '466420', '653346', '155', '19404' ]
+    //transform uniqueMovies array to array of arrays of 10 elements in order every pagination page contains 10 movies and senr requests from avery single pagination page:
 
     //console.log("longShortMovieIdAccordance", longShortMovieIdAccordance);
-    const item = movies.join(","); //1029575,1029575,1029575,278
+    
+    // function chunkArray(array, size) {
+    //   const result = [];
+    //   for (let i = 0; i < array.length; i += size) {
+    //     result.push(array.slice(i, i + size));
+    //   }
+    //   return result;
+    // };
+
+    // const groupedMovieIds = chunkArray(uniqueMovies, 10);
+    // const item = groupedMovieIds[req.params.pagination - 1]
+    // console.log("groupedMovieIdsqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", groupedMovieIds)
+    // console.log("item", item)
+    
+
+    const item = uniqueMovies.join(","); //1029575,1029575,1029575,278
 
     const options = {
       method: "GET",
@@ -70,6 +97,7 @@ router.get("/:day", async (req, res) => {
     };
     const response = await axios.request(options);
     const moviesFromAPI = response.data;
+    //console.log("response.dataxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", response.data)
 
     const modifiedTimeSlot = timeSlot.map((el) => {
 
@@ -82,7 +110,12 @@ router.get("/:day", async (req, res) => {
       return { ...el._doc, movie: movieDetails }; //if I use just ...el, mongo db send a lot of extra info, but I need staff  only under the key ...el._doc 
     });
 
+    
     res.status(200).json(modifiedTimeSlot);
+
+    //console.log("modifiedTimeSlottttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt", modifiedTimeSlot)
+    
+
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

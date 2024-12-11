@@ -1,33 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function DaysMenu(props) {
-  
-  const [active, setActive] = useState(() => {
-    const savedActive = localStorage.getItem("active");
-    return savedActive !== null ? Number(savedActive) : 100;
-  });
-  const [searchParams, setSearchParams] = useSearchParams();
-
+function DaysMenu({active, setActive}) {
 
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     localStorage.setItem("active", active);
   }, [active]);
 
   useEffect(() => {
-    active === 100 ? navigate("/") : filterMovies(active)
-  }, [])
-
-  // useEffect(() => {
-    
-  //   console.log("date changed", searchParams.get("day"));
-    
-  // }, [searchParams.get("day")]);
-
- 
+    active === 100 ? navigate("/") : setActive(active)
+  }, []); 
 
   function transformDate(number) {
     const weekArray = [
@@ -52,9 +37,7 @@ function DaysMenu(props) {
       "October",
       "November",
       "December",
-    ];
-
-    
+    ];    
 
     const weekDay = new Date(number).getDay(); //get weekday
     const day = new Date(number).getDate(); //get day
@@ -63,34 +46,11 @@ function DaysMenu(props) {
     const stringDate =
       weekArray[weekDay] + "," + " " + monthsArray[month] + " " + day;
     return stringDate;
-  }
-
-  const filterMovies = async (i) => {
-    console.log("iiiiii", i);
-    try {
-        setActive(i);
-      const response = await axios.get(`http://localhost:3003/schedule/${i}`);
-      console.log('no date')
-      console.log("to filter", response.data);
-      navigate(`/schedule/?day=${i}`);
-      
-
-      if(response.data.message) {
-        console.log("setScheduledMovieList", response.data)
-       props.setScheduledMovieList([])
-      } else {
-          props.setScheduledMovieList(response.data);
-      }
-      
-    } catch (err) {}
-  };
-
-//   const showAllMovies = (k) => {
-//     setActive(k); 
-//     navigate("/");
-//   }
+  }  
 
   return (
+    <div>
+    
     <div className="daysMenuContainer">
       <div className={active === 100 ? "dayBox active" : "dayBox"} key={`schedDay-${100}`} onClick={() => {navigate("/"); setActive(100)}}>
         All Movies
@@ -100,7 +60,7 @@ function DaysMenu(props) {
         <div
           className={active === i ? "dayBox active" : "dayBox"}
           key={`schedDay-${i}`}
-          onClick={() => filterMovies(i)}
+          onClick={() => {setActive(i); navigate(`/schedule/?day=${i}`)}}
         >
           {i === 0
             ? "Today"
@@ -109,6 +69,7 @@ function DaysMenu(props) {
             : transformDate(new Date().setDate(new Date().getDate() + i))}
         </div>
       ))}
+    </div>
     </div>
   );
 }

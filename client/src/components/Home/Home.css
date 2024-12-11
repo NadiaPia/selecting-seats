@@ -28,7 +28,7 @@
 
 .picture {
   border: solid 1px rgb(209, 208, 208);  
-  height: 490px
+  height: 490px;
 }
 
 .picture img:hover {
@@ -46,8 +46,7 @@
   overflow: hidden;
 }
 
-.movieTitle {
-  font-size: 1.8rem;
+.movieTitle {  
   font-weight:500;
   margin: 15px 0
 }
